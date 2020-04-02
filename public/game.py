@@ -59,9 +59,6 @@ def eval_guess(guess, num):
 
 def _print_f(i, guess, hint, mem):
     print("[{}] guess: {}, sb: {}, mem: {}".format(i, guess, hint, mem))
-    num = 1234
-    num = [ num // 10 ** (3-i) % 10 for i in range(config.NUM_DIGIT)]
-    return [tuple(num)]
 
 
 if __name__ == "__main__":

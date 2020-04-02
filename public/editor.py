@@ -18,7 +18,7 @@ _s.style.height = '%spx' % int(_height * 0.85)
 has_ace = True
 try:
     editor = window.ace.edit("editor")
-    editor.setTheme("ace/theme/monokai")
+    editor.setTheme("ace/theme/tomorrow_night_bright")
     editor.session.setMode("ace/mode/python")
     editor.focus()
 
@@ -98,9 +98,6 @@ else:
     storage = None
 
 
-if 'set_debug' in doc:
-    __BRYTHON__.debug = int(doc['set_debug'].checked)
-
 info = sys.implementation.version
 version = '%s.%s.%s' % (info.major, info.minor, info.micro)
 if info.releaselevel == "rc":
@@ -132,7 +129,7 @@ def run(*args):
         ns['__name__'] = '__main__'
         ns['print_f'] = None
         exec(src, ns)
-        game.eval(make_guess, print_f, 30)
+        game.eval(make_guess, print_f, 30, 15)
         state = 1
     except Exception as exc:
         traceback.print_exc(file=sys.stderr)

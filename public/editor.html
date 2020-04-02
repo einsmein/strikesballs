@@ -5,6 +5,7 @@
 <title>Brython</title>
 <link rel="stylesheet" href="brython.css">
 <link rel="stylesheet" href="console.css">
+<link rel="stylesheet" href="https://unpkg.com/terminal.css@0.7.1/dist/terminal.min.css" />
 
 <script src="https://cdn.jsdelivr.net/npm/@webcomponents/webcomponentsjs@2/webcomponents-loader.min.js"></script>
 <script type="module" src="https://cdn.jsdelivr.net/gh/zerodevx/zero-md@1/src/zero-md.min.js"></script>
@@ -23,22 +24,8 @@ from browser import html
 
 import editor
 
-def set_debug(ev):
-    if ev.target.checked:
-        __BRYTHON__.debug = 1
-    else:
-        __BRYTHON__.debug = 0
-
-__BRYTHON__.debug = int(doc['set_debug'].checked)
-
-# bindings
-doc['set_debug'].bind('change',set_debug)
-
 # next functions are defined in editor.py
-doc['share_code'].bind('click',editor.share_code)
-# Create a lambda around editor.run() so that the event object is not passed to it
 doc['run'].bind('click',lambda *args: editor.run())
-doc['show_console'].bind('click', editor.show_console)
 doc['reset'].bind('click', editor.reset)
 
 </script>
@@ -46,32 +33,16 @@ doc['reset'].bind('click', editor.reset)
 </head>
 <body onload="brython({debug:1})">
 
-<table id=banner cellpadding=0 cellspacing=0>
-<tr id=banner_row >
-<td class="logo"><a href="../index.html" class="logo">Brython</a></td>
-</tr>
-</table>
-
+<div id="header">Strike&amp;Ball</div>
 <div id="main_container"></div>
 </div>
 
 <table id="container">
   <tr>
-    <td>Brython version: <span id="version"></span></td>
-    <td></td>
-    <td>
-        <button id="run"> ▶ Run</button>
-        Debug<input type="checkbox" id="set_debug" checked>
-        <button id="show_console">Python</button>
-        <button id="reset">Reset</button>
-        <button id="share_code">Share code</button>
-    </td>
-  </tr>
-
-  <tr>
     <td id="left">
-      <div id="editor" style="width:100%;">def fn(x):
-    print(x)</div>
+      <div id="editor" style="width:100%;">
+        Loading...
+      </div>
 
     </td>
     <td id="separator"></td>
@@ -81,12 +52,13 @@ doc['reset'].bind('click', editor.reset)
   </tr>
 
   <tr>
-    <td>
+    <td>Brython version: <span id="version"></span><br/>
       Python code editor uses <a href="https://ace.c9.io/" target="_blank">Ace</a>.
     </td>
     <td></td>
     <td>
-      <a href="index.html">Tests suite</a>
+      <button class="btn btn-default" id="run"> ▶ Run</button>
+      <button class="btn btn-default btn-ghost" id="reset">Reset</button>
     </td>
   </tr>
 </table>
@@ -99,7 +71,7 @@ session.addMarker(readonlyRange, "ace_readonly", "fullLine");
 </script>
 
 
-<div>
+<div id="readme">
 <zero-md src="README.md">
 </zero-md>
 </div>

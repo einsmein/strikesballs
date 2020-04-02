@@ -16,20 +16,23 @@ def make_guess(history, mem, num_digit=4):
     move = list(history[-1][0])
     strike = history[-1][1][0]
     ball = history[-1][1][1]
-    if strike < num_digit:
-        pos = mem
-        for _ in range(num_digit):
-            tmp = move[pos]
-            new = tmp + 1
-            move[pos] = -1
-            while new in move and new < 9:
-                new += 1
-            if new in move or new > 9:
-                move[pos] = tmp
-                pos = (pos + 1) % num_digit
-            else:
-                move[pos] = new
-                return (tuple(move), mem)
+
+    if mem == num_digit:
+        raise RuntimeError("I'm out of guess")
+
+    pos = mem
+    for _ in range(num_digit):
+        tmp = move[pos]
+        new = tmp + 1
+        move[pos] = -1
+        while new in move and new < 9:
+            new += 1
+        if new in move or new > 9:
+            move[pos] = tmp
+            pos = (pos + 1) % num_digit
+        else:
+            move[pos] = new
+            return (tuple(move), mem)
 
     mem += 1
     for i in range(num_digit):

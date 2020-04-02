@@ -25,14 +25,13 @@ Obviously the lower the better.
 A 4-digit number is represented by a tuple e.g. `(1,2,3,4)`.
 A guess with its hint is a tuple of 4-digit number and
 a tuple of `(#strikes, #balls)` of that guess e.g.
-`((1,2,3,4), (2,1))`. Then game history (sequence of guesses
-and hints) is a list of those tuples e.g.
-`[((1,2,3,4), (2,1)), ((3,4,5,6), (0,2)), ...]`
+`((1,2,3,4), (2,1))`. Then sequence of guesses and hints (history)
+is a list of those tuples.
 
 A function takes `history`, `memories`, `number of digits` 
 as arguments. Based on those, it makes a next guess.
 - `history`: A list of tuples. Each tuple element comprises a guess 
-and its result e.g. [((1,2,3,4), (2,1)), ((3,4,5,6), (0,2)), ...]
+and its result e.g. `[((1,2,3,4), (2,1)), ((3,4,5,6), (0,2)), ...]`
 - mem: An argument that is being passed through to the next guess.
 Use it to store any state that could be useful for processing.
 To store multiple values, make it a dictionary.
@@ -66,5 +65,5 @@ game.eval(make_guess)
 
 
 
-# Possible extension
+### Extension?
 - Generalize base, number of digits

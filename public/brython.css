@@ -7,17 +7,17 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400');
 
 :root {
-  --clear-1: #f0edee;
-  --clear-2: #e0ddde;
+  --clear-1: #000000;
+  --clear-2: #1c1c1c;
   --clear-3: #e9f1f7;
-  --dark-1: #2a4494;
+  --dark-1: #EEEEEE;
   --dark-2: #028090;
   --dark-3: #0a090c;
 }
 
 
 body {
-  font-family:Montserrat, Arial;
+  font-family:courier;
   font-size:0.9em;
   margin: 0px;
   background-color: var(--clear-1);
@@ -80,7 +80,6 @@ button{
     background-color: var(--clear-2);
     border-color: var(--clear-2);
     color: var(--dark-1);
-    border: 1px solid;
     padding: 0.2em;
 }
 button:hover{
@@ -220,6 +219,16 @@ strong {
   padding:5px
 }
 
+#header {
+  padding: 5%;
+  padding-bottom: 1%;
+  font-size: 2rem;
+
+}
+
+#readme {
+  color: white;
+}
 
 /* Breakpoint for all color devices of < 999px width */
 @media all and (color) and (max-width: 999px) {
