@@ -6,6 +6,9 @@
 <link rel="stylesheet" href="brython.css">
 <link rel="stylesheet" href="console.css">
 
+<script src="https://cdn.jsdelivr.net/npm/@webcomponents/webcomponentsjs@2/webcomponents-loader.min.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/zerodevx/zero-md@1/src/zero-md.min.js"></script>
+
 
 <script type="text/javascript" src="brython.js"></script>
 <script type="text/javascript" src="brython_stdlib.js"></script>
@@ -40,16 +43,6 @@ doc['reset'].bind('click', editor.reset)
 
 </script>
 
-<script>
-function run_js(){
-    var cons = document.getElementById("console")
-    var jscode = cons.value
-    var t0 = (new Date()).getTime()
-    eval(jscode)
-    var t1 = (new Date()).getTime()
-    console.log("Javascript code run in "+(t1-t0)+" ms")
-}
-</script>
 </head>
 <body onload="brython({debug:1})">
 
@@ -97,6 +90,19 @@ function run_js(){
     </td>
   </tr>
 </table>
+
+<script>
+const readonlyRange = new ace.Range(0,0,2,10000)
+editor = ace.edit("editor")
+session = editor.getSession()
+session.addMarker(readonlyRange, "ace_readonly", "fullLine");
+</script>
+
+
+<div>
+<zero-md src="README.md">
+</zero-md>
+</div>
 
 </body>
 </html>

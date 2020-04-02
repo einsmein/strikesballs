@@ -4,7 +4,7 @@ import config
 import gen_num
 
 
-def eval(make_guess, print_f=None, num_games=None):
+def eval(make_guess, print_f=None, num_games=None, num_guess=None):
     """
     Use `make_guess` function to play 50 randomly selected numbers.
 
@@ -29,14 +29,16 @@ def eval(make_guess, print_f=None, num_games=None):
     nums = gen_num.generate()
     if num_games:
         nums = random.sample(nums, num_games)
+    if not print_f:
+        print_f = _print_f
 
     for num in nums:
         history = []
         mem = None
         while not history or history[-1][1][0] < config.NUM_DIGIT:
-            if len(history) >= 15:
+            if num_guess and len(history) >= num_guess:
                 raise RuntimeError("Your algorithm is taking longer" \
-                    " than 30 moves to guess {}".format(num))
+                    " than {} moves to guess {}".format(num_guess, num))
             guess, mem = make_guess(history, mem, config.NUM_DIGIT)
             hint = eval_guess(guess, num)
             if print_f:
@@ -55,7 +57,7 @@ def eval_guess(guess, num):
     return (strike, ball)
 
 
-def print_f(i, guess, hint, mem):
+def _print_f(i, guess, hint, mem):
     print("[{}] guess: {}, sb: {}, mem: {}".format(i, guess, hint, mem))
     num = 1234
     num = [ num // 10 ** (3-i) % 10 for i in range(config.NUM_DIGIT)]

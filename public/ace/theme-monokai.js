@@ -96,6 +96,10 @@ color: #E6DB74\
 .ace-monokai .ace_comment {\
 color: #75715E\
 }\
+.ace-monokai .ace_readonly {\
+color: #F8F8F0;\
+background: #2F3129;\
+}\
 .ace-monokai .ace_indent-guide {\
 background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAEklEQVQImWPQ0FD0ZXBzd/wPAAjVAoxeSgNeAAAAAElFTkSuQmCC) right repeat-y\
 }";

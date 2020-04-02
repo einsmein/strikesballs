@@ -4,7 +4,7 @@ import binascii
 
 import tb as traceback
 import javascript
-import play
+import game
 
 from browser import document as doc, window, alert, bind, html, timer
 from browser.widgets import dialog
@@ -29,6 +29,7 @@ try:
     })
 
     readonlyRange = (0, 0)
+
     def preventReadonly(*_):
         e = _[0]
         row = editor.selection.getCursor().row
@@ -67,14 +68,6 @@ except Exception as exc:
     has_ace = False
 
 
-if hasattr(window, 'localStorage'):
-    from browser.local_storage import storage
-else:
-    storage = None
-
-if 'set_debug' in doc:
-    __BRYTHON__.debug = int(doc['set_debug'].checked)
-
 class cOutput:
     encoding = 'utf-8'
 
@@ -92,14 +85,21 @@ class cOutput:
     def __len__(self):
         return len(self.buf)
 
+
 if "console" in doc:
     cOut = cOutput()
     sys.stdout = cOut
     sys.stderr = cOut
 
 
-def to_str(xx):
-    return str(xx)
+if hasattr(window, 'localStorage'):
+    from browser.local_storage import storage
+else:
+    storage = None
+
+
+if 'set_debug' in doc:
+    __BRYTHON__.debug = int(doc['set_debug'].checked)
 
 info = sys.implementation.version
 version = '%s.%s.%s' % (info.major, info.minor, info.micro)
@@ -130,9 +130,9 @@ def run(*args):
     try:
         ns = globals()
         ns['__name__'] = '__main__'
-        # ns = {'__name__':'__main__'}
+        ns['print_f'] = None
         exec(src, ns)
-        play.main(make_guess)
+        game.eval(make_guess, print_f, 30)
         state = 1
     except Exception as exc:
         traceback.print_exc(file=sys.stderr)
@@ -143,9 +143,6 @@ def run(*args):
     print('<completed in %6.2f ms>' % ((time.perf_counter() - t0) * 1000.0))
     return state
 
-def show_js(ev):
-    src = editor.getValue()
-    doc["console"].value = javascript.py2js(src, '__main__')
 
 def share_code(ev):
     src = editor.getValue()
@@ -164,6 +161,7 @@ def share_code(ev):
         area = html.TEXTAREA(rows=0, cols=0)
         d.panel <= area
         area.value = url
+
         # copy to clipboard
         area.focus()
         area.select()
@@ -202,13 +200,10 @@ def set_src(f_name, cache=True):
            editor.setValue(content)
            storage["py_src"] = content
 
-def reset(ev):
+def reset(ev, cache=False):
     if has_ace:
-        reset_src('make_guess.py', cache=False)
+        reset_src('make_guess.py', cache)
     else:
-        reset_src_area('make_guess.py', cache=False)
+        reset_src_area('make_guess.py', cache)
 
-if has_ace:
-    reset_src('make_guess.py')
-else:
-    reset_src_area('make_guess.py')
+reset(None, cache=True)
