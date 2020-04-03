@@ -88,7 +88,8 @@ certain extent. (See comparison with CPython
 
 
 #### On your machine
-Copy [game.py]() and [gen_num.py]().
+Copy [game.py](https://github.com/einsmein/strikesballs/blob/master/public/game.py) and
+[gen_num.py](https://github.com/einsmein/strikesballs/blob/master/public/gen_num.py).
 You are free to set the number of games and guess limit.
 See documentation of `eval` in `game.py`.
 To get a score of your algorithm `make_guess`, do

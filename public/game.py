@@ -1,6 +1,4 @@
 import random
-
-import config
 import gen_num
 
 
