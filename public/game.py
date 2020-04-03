@@ -37,7 +37,7 @@ def eval(make_guess, print_f=None, num_games=None, num_guess=None):
         mem = None
         while not history or history[-1][1][0] < config.NUM_DIGIT:
             if num_guess and len(history) >= num_guess:
-                raise RuntimeError("Your algorithm is taking longer" \
+                raise RuntimeError("The algorithm is taking longer" \
                     " than {} moves to guess {}".format(num_guess, num))
             guess, mem = make_guess(history, mem, config.NUM_DIGIT)
             hint = eval_guess(guess, num)

@@ -1,43 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+<head>
+<meta charset="utf-8">
+<title>Strikes & Balls</title>
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+<link rel="stylesheet" href="brython.css">
+<link rel="stylesheet" href="console.css">
+<link rel="stylesheet" href="https://unpkg.com/terminal.css@0.7.1/dist/terminal.min.css" />
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+<script src="https://cdn.jsdelivr.net/npm/@webcomponents/webcomponentsjs@2/webcomponents-loader.min.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/zerodevx/zero-md@1/src/zero-md.min.js"></script>
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+
+<script type="text/javascript" src="brython.js"></script>
+<script type="text/javascript" src="brython_stdlib.js"></script>
+
+<script src="ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="ace/ext-language_tools.js" type="text/javascript" charset="utf-8"></script>
+
+
+<script type="text/python3" id="tests_editor">
+from browser import document as doc, window
+from browser import html
+
+import editor
+
+# next functions are defined in editor.py
+doc['run'].bind('click',lambda *args: editor.run())
+doc['reset'].bind('click', editor.reset)
+
+</script>
+
+</head>
+<body onload="brython({debug:1})">
+
+<div id="header">Strikes&amp;Balls</div>
+<div id="main_container"></div>
+</div>
+
+<table id="container">
+  <tr>
+    <td id="left">
+      <div id="editor" style="width:100%;">
+        Loading...
+      </div>
+
+    </td>
+    <td id="separator"></td>
+    <td id="right">
+      <textarea id="console" autocomplete="off"></textarea>
+    </td>
+  </tr>
+
+  <tr>
+    <td>Brython version: <span id="version"></span><br/>
+      Python code editor uses <a href="https://ace.c9.io/" target="_blank">Ace</a>.
+    </td>
+    <td></td>
+    <td>
+      <button class="btn btn-default" id="run"> ▶ Run</button>
+      <button class="btn btn-default btn-ghost" id="reset">Reset</button>
+    </td>
+  </tr>
+</table>
+
+<script>
+const readonlyRange = new ace.Range(0,0,2,10000)
+editor = ace.edit("editor")
+session = editor.getSession()
+session.addMarker(readonlyRange, "ace_readonly", "fullLine");
+</script>
+
+
+<div id="readme">
+<zero-md src="README.md">
+</zero-md>
+</div>
+
+</body>
 </html>

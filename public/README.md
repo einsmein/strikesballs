@@ -1,11 +1,11 @@
-# Strike & Ball
+# Strikes & Balls
 
 ## Rule
 
-Purpose of `strike & ball` is to guess a 4-digit number with 
+Purpose of `strikes & balls` is to guess a 4-digit number with 
 minimum number of tries. All digits are different in this game.
 After each guess, a player gets a hint of how many digit 
-are included and at the right position (strike), 
+are included and correctly positioned (strike), 
 and how many are included but not in the right position (ball).
 Based on a sequence of these tries (history), a player can make 
 the next guess that would be most informative of what the number is.
@@ -32,9 +32,44 @@ A function takes `history`, `memories`, `number of digits`
 as arguments. Based on those, it makes a next guess.
 - `history`: A list of tuples. Each tuple element comprises a guess 
 and its result e.g. `[((1,2,3,4), (2,1)), ((3,4,5,6), (0,2)), ...]`
-- mem: An argument that is being passed through to the next guess.
+- `mem`: An argument that is being passed through to the next guess.
 Use it to store any state that could be useful for processing.
 To store multiple values, make it a dictionary.
+
+See example in `make_guess.py`, or click `Reset` if you're on a browser version.
+
+> ## NB! Watch out for infinite loop
+> Make sure you don't have an infinite loop in your function! 
+> JS being single threaded makes it cumbersome to set a timer if possible at all.
+> You can do something like this and check time lapse in every loop,
+> but that can significantly impact the overall execution time.
+>
+> ```
+> def make_guess(history, mem, num_digit=4):
+>     ...
+> 
+>     from datetime import datetime
+>     if not history and not mem:
+>         start_time = datetime.utcnow()
+>         mem = {"start_time": start_time}
+>         return ((0,1,2,3), mem)
+> 
+>     # Check time lapse in every loop as a fool-proof solution
+>     timeout = 30
+>     while some_condition:
+>         if (datetime.utcnow() - start_time).total_seconds() > timeout:
+>             raise RuntimeError("The algorithm is taking longer"\
+>                 " than {} seconds to guess {}".format(timeout, num))
+>         while another_condition:
+>             if (datetime.utcnow() - start_time).total_seconds() > timeout:
+>                 raise RuntimeError("The algorithm is taking longer"\
+>                     " than {} seconds to guess {}".format(timeout, num))
+>     ...
+> ```
+> 
+> If you run locally, one thing you can do is using a background 
+> [thread](https://docs.python.org/3/library/threading.html).
+> Keep timer in the main thread, then join (kill it)  when time is up.
 
 
 ### Evaluation
