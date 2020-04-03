@@ -1,3 +1,5 @@
+# readonly section
+
 def make_guess(history, mem, num_digit=4):
     """
     Algorithm that makes the next guess based on previous guesses (history).
@@ -9,6 +11,7 @@ def make_guess(history, mem, num_digit=4):
         It can be used to store any state that could be useful for processing.
         To store multiple values, make it a dictionary.
     """
+
 
     if not history and not mem:
         return ((0,1,2,3), 0)

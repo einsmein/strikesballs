@@ -28,7 +28,7 @@ try:
      'highlightSelectedWord': True
     })
 
-    readonlyRange = (0, 0)
+    readonlyRange = (0, 13)
 
     def preventReadonly(*_):
         e = _[0]

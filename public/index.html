@@ -54,7 +54,8 @@ doc['reset'].bind('click', editor.reset)
   </tr>
 
   <tr>
-    <td>Brython version: <span id="version"></span><br/>
+    <td>
+      Version: 0.1.0 / Brython version: <span id="version"></span><br/>
       Python code editor uses <a href="https://ace.c9.io/" target="_blank">Ace</a>.
     </td>
     <td></td>
@@ -66,7 +67,7 @@ doc['reset'].bind('click', editor.reset)
 </table>
 
 <script>
-const readonlyRange = new ace.Range(0,0,2,10000)
+const readonlyRange = new ace.Range(0,0,13,10000)
 editor = ace.edit("editor")
 session = editor.getSession()
 session.addMarker(readonlyRange, "ace_readonly", "fullLine");

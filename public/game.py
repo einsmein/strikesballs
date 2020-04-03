@@ -32,6 +32,8 @@ def eval(make_guess, print_f=None, num_games=None, num_guess=None):
     if not print_f:
         print_f = _print_f
 
+    score = 0
+
     for num in nums:
         history = []
         mem = None
@@ -44,6 +46,9 @@ def eval(make_guess, print_f=None, num_games=None, num_guess=None):
             if print_f:
                 print_f(len(history), guess, hint, mem)
             history += [(guess, hint)]
+        if len(history) > score or not score:
+            score = len(history)
+    print(f"score: {score}")
 
 
 def eval_guess(guess, num):
