@@ -57,3 +57,8 @@ textarea {
 #readme {
     padding: 10%;
 }
+
+#gh {
+    height: 0.9rem;
+    width: 0.9rem;
+}

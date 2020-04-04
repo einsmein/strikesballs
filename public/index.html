@@ -8,6 +8,13 @@
 <link rel="stylesheet" href="brython.css">
 <link rel="stylesheet" href="console.css">
 <link rel="stylesheet" href="https://unpkg.com/terminal.css@0.7.1/dist/terminal.min.css" />
+<style>
+:root {
+  --primary-color: #323232;
+  --dark-1: #CBCBCB;
+  --global-font-size: 14px;
+}
+</style>
 
 <script src="https://cdn.jsdelivr.net/npm/@webcomponents/webcomponentsjs@2/webcomponents-loader.min.js"></script>
 <script type="module" src="https://cdn.jsdelivr.net/gh/zerodevx/zero-md@1/src/zero-md.min.js"></script>
@@ -55,8 +62,9 @@ doc['reset'].bind('click', editor.reset)
 
   <tr>
     <td>
-      Version: 0.1.0 / Brython version: <span id="version"></span><br/>
-      Python code editor uses <a href="https://ace.c9.io/" target="_blank">Ace</a>.
+      Version: 0.1.0 / <a href="https://github.com/einsmein/strikesballs"><img id="gh" src="github.png"/></a> 
+        <a href="https://github.com/einsmein/strikesballs/issues">Bug report</a><br/>
+      Brython version: <span id="version"></span> / Python editor: <a href="https://ace.c9.io/" target="_blank">Ace</a>.
     </td>
     <td></td>
     <td>
