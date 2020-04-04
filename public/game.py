@@ -1,6 +1,7 @@
 import random
 import gen_num
 
+NUM_DIGIT = 4
 
 def eval(make_guess, print_f=None, num_games=None, num_guess=None):
     """
@@ -35,11 +36,11 @@ def eval(make_guess, print_f=None, num_games=None, num_guess=None):
     for num in nums:
         history = []
         mem = None
-        while not history or history[-1][1][0] < config.NUM_DIGIT:
+        while not history or history[-1][1][0] < NUM_DIGIT:
             if num_guess and len(history) >= num_guess:
                 raise RuntimeError("The algorithm is taking longer" \
                     " than {} moves to guess {}".format(num_guess, num))
-            guess, mem = make_guess(history, mem, config.NUM_DIGIT)
+            guess, mem = make_guess(history, mem, NUM_DIGIT)
             hint = eval_guess(guess, num)
             if print_f:
                 print_f(len(history), guess, hint, mem)
@@ -52,7 +53,7 @@ def eval(make_guess, print_f=None, num_games=None, num_guess=None):
 def eval_guess(guess, num):
     strike = 0
     ball = 0
-    for i in range(config.NUM_DIGIT):
+    for i in range(NUM_DIGIT):
         if guess[i] == num[i]:     # strike
             strike += 1
         elif guess[i] in num:      # ball

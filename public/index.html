@@ -62,8 +62,8 @@ doc['reset'].bind('click', editor.reset)
 
   <tr>
     <td>
-      Version: 0.1.0 / <a href="https://github.com/einsmein/strikesballs"><img id="gh" src="github.png"/></a> 
-        <a href="https://github.com/einsmein/strikesballs/issues">Bug report</a><br/>
+      Version: 0.1.0 / <a target="_blank" href="https://github.com/einsmein/strikesballs"><img id="gh" src="github.png"/></a> 
+        <a target="_blank" href="https://github.com/einsmein/strikesballs/issues">Bug report</a><br/>
       Brython version: <span id="version"></span> / Python editor: <a href="https://ace.c9.io/" target="_blank">Ace</a>.
     </td>
     <td></td>
@@ -86,6 +86,19 @@ session.addMarker(readonlyRange, "ace_readonly", "fullLine");
 <zero-md src="README.md">
 </zero-md>
 </div>
+
+
+<script type="text/javascript" src="autosave.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        AutoSave.start();
+    })
+
+    $(window).unload(function(){
+        AutoSave.stop();
+    });
+</script>
 
 </body>
 </html>
