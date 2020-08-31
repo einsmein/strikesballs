@@ -28,8 +28,8 @@ a tuple of `(#strikes, #balls)` of that guess e.g.
 `((1,2,3,4), (2,1))`. Then sequence of guesses and hints (history)
 is a list of those tuples.
 
-A function takes `history`, `memories`, `number of digits` 
-as arguments. Based on those, it makes a next guess.
+You have to write a function that takes `history`, `memories`, `number of digits` 
+as arguments. The function returns the next guess as its output.
 - `history`: A list of tuples. Each tuple element comprises a guess 
 and its result e.g. `[((1,2,3,4), (2,1)), ((3,4,5,6), (0,2)), ...]`
 - `mem`: An argument that is being passed through to the next guess.
