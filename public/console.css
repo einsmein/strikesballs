@@ -62,3 +62,11 @@ textarea {
     height: 0.9rem;
     width: 0.9rem;
 }
+
+#stat {
+    width: 150px;
+    height: auto;
+    display: none;
+    position: absolute;
+    z-index: -1;
+}
